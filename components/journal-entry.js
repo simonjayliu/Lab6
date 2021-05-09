@@ -73,7 +73,14 @@ class JournalEntry extends HTMLElement {
      */
     
     // CODE GOES HERE
-
+    let wrapper = document.createElement('template');
+    var date = this.shadowRoot.querySelector('p[class="entry-date"]');
+    var content = this.shadowRoot.querySelector('p[class="entry-content"]');
+    var title = this.shadowRoot.querySelector('h2[class="entry-title"]');
+    date.innerHTML = entry.date;
+    title.innerHTML = entry.title;
+    content.innerHTML = entry.content;
+    
     if (entry.image) {
       let entryImage;
       /*
@@ -84,6 +91,16 @@ class JournalEntry extends HTMLElement {
        */
 
       // CODE GOES HERE vvv
+      //customElements.define('image', entry-image);
+      console.log(entry);
+      entryImage = document.createElement('img');
+      entryImage.setAttribute('class', 'entry-image');
+      entryImage.setAttribute('src', entry.image.src);
+      entryImage.setAttribute('alt', entry.image.alt);
+      var art = this.shadowRoot.querySelector('article[class="entry"]');
+      art.appendChild(entryImage);
+      //console.log(this);
+
 
 
 
@@ -110,6 +127,15 @@ class JournalEntry extends HTMLElement {
        */
 
       // CODE GOES HERE vvv
+      //customElements.define('audio', entry-audio);
+      entryAudio = document.createElement('audio');
+      entryAudio.setAttribute('class', 'entry-audio');
+      entryAudio.setAttribute('src', entry.audio);
+      var art = this.shadowRoot.querySelector('article[class="entry"]');
+      //entryAudio.createAttribute('controls');
+      entryAudio.controls = true;
+      console.log(this);
+      art.append(entryAudio);
 
 
 
